@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 100%;
+            padding-top: 50px;
+        }
+        .dadu {
+            margin: auto;
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border: 1px solid;
+        }
+        .dadu-slide{
+            position: absolute;
+            display: flex;
+            width: max-content;
+            transition: transform 0.5s ease-in-out;
+        }
+        .angka {
+            box-sizing: border-box;
+            border-radius: 10%;
+            width: 200px;
+            height: 200px;
+            border: 1px solid;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="dadu">
+            <div class="dadu-slide">
+                <div class="angka" data-index="1">1</div>
+                <div class="angka" data-index="2">2</div>
+                <div class="angka" data-index="3">3</div>
+                <div class="angka" data-index="4">4</div>
+                <div class="angka" data-index="5">5</div>
+                <div class="angka" data-index="6">6</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const dadu = document.querySelector('.dadu');
+        const daduSlide = document.querySelector('.dadu-slide');
+        let next = 0;
+        dadu.addEventListener('click', function(){
+            setInterval(function(){
+                if(next == 1200){
+                    next = 0;
+                    daduSlide.style.transform = `translateX(-${next}px)`;
+                    next += 200;
+                } else {
+                    daduSlide.style.transform = `translateX(-${next}px)`;
+                    next += 200;
+                }
+            }, 600)
+        })
+    </script>
+    <!-- <script>
+        let randomAngka = 0;
+        let percobaan = 0;
+        let dadu = {
+            angka : new Set([]),
+            percobaan : []
+        };
+        let intervalId = setInterval(function(){
+            randomAngka = Math.round(Math.random()*6);
+            percobaan++
+            if(dadu.angka.has(1) == false){
+                if(randomAngka == 1){
+                    console.log(randomAngka);
+                    console.log(percobaan);
+                    dadu.percobaan.push(percobaan);
+                    dadu.angka.add(1);
+                }
+            }
+            if(dadu.angka.has(2) == false){
+                if(randomAngka == 2){
+                    console.log(randomAngka);
+                    console.log(percobaan);
+                    dadu.percobaan.push(percobaan);
+                    dadu.angka.add(2);
+                }
+            }
+            if(dadu.angka.has(3) == false){
+                if(randomAngka == 3){
+                    console.log(randomAngka);
+                    console.log(percobaan);
+                    dadu.percobaan.push(percobaan);
+                    dadu.angka.add(3);
+                }
+            }
+            if(dadu.angka.has(4) == false){
+                if(randomAngka == 4){
+                    console.log(randomAngka);
+                    console.log(percobaan);
+                    dadu.percobaan.push(percobaan);
+                    dadu.angka.add(4);
+                }
+            }
+            if(dadu.angka.has(5) == false){
+                if(randomAngka == 5){
+                    console.log(randomAngka);
+                    console.log(percobaan);
+                    dadu.percobaan.push(percobaan);
+                    dadu.angka.add(5);
+                }
+            }
+            if(dadu.angka.has(6) == false){
+                if(randomAngka == 1){
+                    console.log(randomAngka);
+                    console.log(percobaan);
+                    dadu.percobaan.push(percobaan);
+                    dadu.angka.add(6);
+                }
+            }
+        })
+        for(var x in dadu){
+            console.log(dadu[x]);
+        }
+    </script> -->
+    <!--  <script>
+        let randomAngka = 0;
+let percobaan = 0;
+let dadu = {
+    angka: new Set(),
+    percobaan: []
+};
+
+let intervalId = setInterval(function() {
+    randomAngka = Math.ceil(Math.random() * 100); // Menghasilkan angka acak antara 1 dan 100
+    percobaan++;
+
+    console.log(`Percobaan ke-${percobaan}: Angka acak = ${randomAngka}`);
+
+    // Memeriksa hanya angka 1 hingga 6
+    if (randomAngka >= 1 && randomAngka <= 6 && !dadu.angka.has(randomAngka)) {
+        console.log(`Angka ${randomAngka} ditemukan pada percobaan ke-${percobaan}`);
+        dadu.percobaan.push(percobaan);
+        dadu.angka.add(randomAngka);
+    }
+
+    // Menghentikan interval jika semua angka 1-6 sudah ditemukan
+    if (dadu.angka.size === 6) {
+        clearInterval(intervalId);
+        console.log("Semua angka 1 hingga 6 telah ditemukan:");
+        for (let x in dadu) {
+            console.log(`${x}:`, dadu[x]);
+        }
+    }
+});
+
+    </script> -->
+</body>
+
+</html>

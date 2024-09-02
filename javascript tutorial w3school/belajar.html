@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript w3school</title>
+    <style>
+        button {
+            display: block;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>javascript pertamaku</h1>
+    <p id="demo"></p>
+
+    <!-- JavaScript Print
+    JavaScript does not have any print object or print methods.
+    You cannot access output devices from JavaScript.
+    The only exception is that you can call the window.print() method in the browser to print(print physic) the content of the current
+    window. -->
+    <button onclick="window.print()">Print this page</button>
+    <h3>contoh penggunaan js event</h3>
+    <button onclick="ubahNama()" id="test">kocak</button>
+    <button onmouseover="ubahNama2()" id="test2">kocak</button>
+    <button onmouseout="ubahNama3()" id="test3">kocak</button>
+    <button onclick="belajar1()">belajar 1</button>
+    <button onclick="belajar2()">belajar 2</button>
+    <button onclick="belajar3()">belajar 3</button>
+    <button onclick="prompt1()">pencet panggil prompt1</button>
+    <button onclick="gender()">masukan gender</button>
+    <button onclick="urut()">pengurut</button>
+    <div class="container-Siswa">
+        <div class="siswa1"></div>
+        <div class="siswa2"></div>
+        <div class="siswa3"></div>
+        <div class="siswa4"></div>
+        <div class="siswa5"></div>
+        <div class="siswa6"></div>
+    </div>
+
+    <!-- javascript point -->
+    <script>
+        // mengganti isi pada dalam tag
+        document.getElementById('demo').innerHTML = 'ini menggunakan .innerHTML';
+        console.log(document.getElementById('demo').innerHTML);
+
+        // akan membuat paragraf baru (biasa untuk testing)
+        // Using document.write() after an HTML document is loaded, will delete all existing HTML:
+        // document.write('ini menggunakan .write()');
+
+        // window.alert('ini alert');
+        // sama saja karena window adalah global scope
+        // alert('ini juga alert');
+    </script>
+    <script src="belajar1.js"></script><!-- 
+    <script src="belajar2-part2.js"></script>
+    <script src="belajar3.js"></script> -->
+    <script src="belajar4.js"></script>
+</body>
+
+</html>

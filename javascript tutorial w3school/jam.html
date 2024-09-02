@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .lingkaran {
+            margin: auto;
+            height: 500px;
+            width: 500px;
+        }
+        .ling-detik, .ling-menit, .ling-jam {
+            position: absolute;
+            height: 500px;
+            width: 500px;
+            border: 1px solid;
+            border-radius: 100%;
+        }
+        .jarum {
+            z-index: 2;
+            position: absolute;
+            top: 50%;
+            left: calc(50% - 50%);
+            width: 50%;
+            height: 1px;
+            background-color: red;
+        }
+        .ling-detik .jarum {
+            left: calc(50% - 45%);
+            width: 45%;
+            background-color: red;
+        }
+        .ling-menit .jarum {
+            left: calc(50% - 38%);
+            width: 38%;
+            background-color: black;
+        }
+        .ling-jam .jarum {
+            left: calc(50% - 35%);
+            width: 35%;
+            background-color: blue;
+        }
+        p{
+            z-index: 1;
+            margin: 0;
+        }
+        [id *= 'jam'] {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: 1px solid;
+            text-align: center;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="lingkaran">
+        <div class="ling-detik">
+            <div class="jarum"></div>
+        </div>
+        <div class="ling-menit">
+            <div class="jarum"></div>
+        </div>
+        <div class="ling-jam">
+            <div class="jarum"></div>
+        </div>
+        <div class="jam">
+        </div>
+    </div>
+    <script>
+        const parentJam = document.querySelector('.jam')
+        let teks = ``;
+
+        for(let i = 0; i < 12; i++){
+            teks += `
+            <div id="jam${i+1}" style='rotate: ${30 * (i + 1)}deg'>
+                <p style='rotate: -${30 * (i + 1)}deg'>${i+1}</p>
+            </div>`;
+        }
+        parentJam.innerHTML = teks;
+        
+        let waktu = new Date();
+        let detik = waktu.getHours() * 3600 + waktu.getMinutes() * 60 + waktu.getSeconds();
+
+        setInterval(function (){
+            const jrmDetik = document.querySelector('.ling-detik');
+            const jrmMenit = document.querySelector('.ling-menit');
+            const jrmJam = document.querySelector('.ling-jam');
+
+            jrmDetik.style.rotate = `${(6 * detik) + 90}deg`;
+            jrmMenit.style.rotate = `${(6 * detik/60) + 90}deg`;
+            jrmJam.style.rotate = `${(6 * detik/720) + 90}deg`;
+
+            detik++
+            console.log(detik);
+        }, 1000)
+    </script><!-- 
+    <script>
+        const parentJam = document.querySelector('.jam');
+        const createClockNumbers = () => {
+            for (let i = 0; i < 12; i++) {
+                parentJam.innerHTML += `
+                    <div id="jam${i+1}" style="rotate:${30 * (i+1)}deg">
+                        <p style="rotate:-${30 * (i+1)}deg">${i+1}</p>
+                    </div>`;
+            }
+        };
+        
+        createClockNumbers();
+    
+        let detik = new Date().getHours() * 3600 + new Date().getMinutes() * 60 + new Date().getSeconds();
+    
+        setInterval(() => {
+            const jrmDetik = document.querySelector('.ling-detik');
+            const jrmMenit = document.querySelector('.ling-menit');
+            const jrmJam = document.querySelector('.ling-jam');
+    
+            jrmDetik.style.rotate = `${(6 * detik) + 90}deg`;
+            jrmMenit.style.rotate = `${(6 * detik / 60) + 90}deg`;
+            jrmJam.style.rotate = `${(6 * detik / 720) + 90}deg`;
+    
+            detik++;
+            console.log(detik);
+        }, 1000);
+    </script>
+     -->
+</body>
+</html>

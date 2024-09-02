@@ -1,0 +1,18 @@
+.container-Siswa {
+    box-sizing: border-box;
+    border: 3px solid green;
+    height: max-content;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-auto-flow: row;
+    width: max-content;
+}
+
+[class*="siswa"]{
+    box-sizing: border-box;
+    border: 1px solid red;
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+}

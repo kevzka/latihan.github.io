@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3dcube</title>
+    <style>
+        :root{
+            --sisi: 100px;
+        }
+        body{
+            padding-top: 100px;
+            width: 100%;
+            height: 100vh;
+        }
+        .cube-container{
+            margin: auto;
+            perspective: 1000px;
+            width: var(--sisi);
+            height: var(--sisi);
+        }
+        .cube{
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-45deg) rotateY(-45deg);
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            border: 1px solid;
+        }
+        .side{
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            border: 1px solid;
+        }
+        .front{
+            transform: translateZ(calc(var(--sisi)/2));
+        }
+        .back{
+            transform: translateZ(calc((var(--sisi)/2)*-1));
+        }
+        .right{
+            transform: rotateY(90deg) translateZ(calc(var(--sisi)/2));
+        }
+        .left{
+            transform: rotateY(90deg) translateZ(calc((var(--sisi)/2)*-1));
+        }
+        .top{
+            transform: rotateX(90deg) translateZ(calc(var(--sisi)/2));
+        }
+        .bottom{
+            transform: rotateX(90deg) translateZ(calc((var(--sisi)/2)*-1));
+        }
+        .controls{
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cube-container">
+        <div class="cube">
+            <div class="side front">front</div>
+            <div class="side back">back</div>
+            <div class="side right">right</div>
+            <div class="side left">left</div>
+            <div class="side top">top</div>
+            <div class="side bottom">bottom</div>
+        </div>
+    </div>
+    <div class="controls">
+        <label>rotateX:</label>
+        <input type="range"min='-180'max='180'value='0' id="inputX">
+        <p>value: <span id="rotateX">0</span></p>
+        <label>rotateY:</label>
+        <input type="range"min='-180'max='180' id="inputY">
+        <p>value: <span id="rotateY">0</span></p>
+    </div>
+    <script>
+        const cube = document.querySelector('.cube');
+        const inputX = document.querySelector('#inputX');
+        const inputY = document.querySelector('#inputY');
+        const outputX = document.querySelector('#rotateX');
+        const outputY = document.querySelector('#rotateY');
+
+        function valueX(){
+            cube.style.transform = `rotateX(${inputX.value}deg)`;
+            outputX.innerHTML = inputX.value;
+        }
+
+        inputX.addEventListener('input', valueX);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Cube</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .cube-container {
+            perspective: 1000px;
+            width: 300px;
+            height: 300px;
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(0deg) rotateY(0deg);
+            transition: transform 0.3s linear;
+        }
+
+        .side {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .front {
+            transform: translateZ(150px);
+            background-color: rgba(173, 216, 230, 0.486);
+        }
+
+        .back {
+            transform: rotateY(180deg) translateZ(150px);
+            background-color: rgba(240, 128, 128, 0.5);
+        }
+
+        .right {
+            transform: rotateY(90deg) translateZ(150px);
+            background-color: rgba(144, 238, 144, 0.495);
+        }
+
+        .left {
+            transform: rotateY(-90deg) translateZ(150px);
+            background-color: rgba(250, 250, 210, 0.443);
+        }
+
+        .top {
+            transform: rotateX(90deg) translateZ(150px);
+            background-color: rgba(255, 182, 193, 0.473);
+        }
+
+        .bottom {
+            transform: rotateX(-90deg) translateZ(150px);
+            background-color: rgba(211, 211, 211, 0.461);
+        }
+
+        .controls {
+            margin-top: 100px;
+        }
+
+        .controls label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cube-container">
+        <div class="cube">
+            <div class="side front">Front</div>
+            <div class="side back">Back</div>
+            <div class="side right">Right</div>
+            <div class="side left">Left</div>
+            <div class="side top">Top</div>
+            <div class="side bottom">Bottom</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <label for="rotateX">Rotate X:</label>
+        <input type="range" id="rotateX" min="0" max="360" value="0">
+        <span id="rotateXValue">0</span>°
+
+        <label for="rotateY" style="margin-left: 20px;">Rotate Y:</label>
+        <input type="range" id="rotateY" min="0" max="360" value="0">
+        <span id="rotateYValue">0</span>°
+    </div>
+
+    <script>
+        // Ambil elemen-elemen yang diperlukan
+        const cube = document.querySelector('.cube');
+        const rotateXInput = document.getElementById('rotateX');
+        const rotateYInput = document.getElementById('rotateY');
+        const rotateXValue = document.getElementById('rotateXValue');
+        const rotateYValue = document.getElementById('rotateYValue');
+
+        // Fungsi untuk memperbarui rotasi X dan Y
+        function updateCubeRotation() {
+            const rotateX = rotateXInput.value;
+            const rotateY = rotateYInput.value;
+
+            cube.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+            // Update teks tampilan nilai rotasi
+            rotateXValue.textContent = rotateX;
+            rotateYValue.textContent = rotateY;
+        }
+
+        // Tambahkan event listener ke input range
+        rotateXInput.addEventListener('input', updateCubeRotation);
+        rotateYInput.addEventListener('input', updateCubeRotation);
+    </script>
+</body>
+
+</html>
+ -->
